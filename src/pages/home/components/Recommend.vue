@@ -5,7 +5,7 @@
       <span class="like">猜你喜欢</span>
     </div>
     <ul class="like-list">
-      <li class="item border-bottom" v-for="item of recommendList" :key="item.id">
+      <li class="item border-bottom" v-for="item of list" :key="item.id">
         <a href="#" class="item-link">
           <div class="item-wrapper">
             <img class="item-img" :src="item.imgUrl" />
@@ -24,57 +24,60 @@
 <script>
 export default {
   name: 'HomeRecommend',
+  props:{
+    list:Array
+  },
   data () {
     return{
-      recommendList:[{
-        id:'0001',
-        imgUrl:'http://img1.qunarzz.com/sight/p0/1801/66/665b245a7ca8728a3.img.jpg_200x200_88d144ad.jpg',
-        title:'杭州烂苹果乐园',
-        desc:'5577条评论',
-        price:'￥140起'
-      },{
-        id:'0002',
-        imgUrl:'http://img1.qunarzz.com/sight/p0/1412/be/c788f0f3767d2ea037b9b66d2010bfa4.water.jpg_200x200_ead93bcd.jpg',
-        title:'宋城千古情',
-        desc:'14711条评论',
-        price:'￥245起'
-      },{
-        id:'0003',
-        imgUrl:'http://img1.qunarzz.com/sight/p0/201408/14/771e7f0a85ca13b12c3fde0f7739440f.jpg_200x200_5e08c104.jpg',
-        title:'杭州乐园',
-        desc:'4441条评论',
-        price:'￥120起'
-      },{
-        id:'0004',
-        imgUrl:'http://img1.qunarzz.com/sight/p0/1603/ae/aecef86d7655873f90.water.jpg_200x200_22a0790e.jpg',
-        title:'杭州野生动物园',
-        desc:'4794条评论',
-        price:'￥170起'
-      },{
-        id:'0005',
-        imgUrl:'http://img1.qunarzz.com/sight/p0/201212/18/f195032e85740a4b93835fbb.jpg_200x200_77761d11.jpg',
-        title:'杭州海底世界',
-        desc:'6464条评论',
-        price:'￥115起'
-      },{
-        id:'0006',
-        imgUrl:'http://img1.qunarzz.com/sight/p0/1603/e6/e646f4221574cc2a90.water.jpg_200x200_d9b6cabd.jpg',
-        title:'双溪竹海漂流',
-        desc:'6464条评论',
-        price:'￥110起'
-      },{
-        id:'0007',
-        imgUrl:'http://img1.qunarzz.com/sight/p0/1603/33/337b483a8f5e76fb90.water.jpg_200x200_8f62ff4e.jpg',
-        title:'瑶琳仙境',
-        desc:'6464条评论',
-        price:'￥109起'
-      },{
-        id:'0008',
-        imgUrl:'http://img1.qunarzz.com/sight/p0/1603/18/18ae748f826c5abe90.water.jpg_200x200_67503119.jpg',
-        title:'大明山',
-        desc:'6464条评论',
-        price:'￥91.4起'
-      }]
+      // recommendList:[{
+      //   id:'0001',
+      //   imgUrl:'http://img1.qunarzz.com/sight/p0/1801/66/665b245a7ca8728a3.img.jpg_200x200_88d144ad.jpg',
+      //   title:'杭州烂苹果乐园',
+      //   desc:'5577条评论',
+      //   price:'￥140起'
+      // },{
+      //   id:'0002',
+      //   imgUrl:'http://img1.qunarzz.com/sight/p0/1412/be/c788f0f3767d2ea037b9b66d2010bfa4.water.jpg_200x200_ead93bcd.jpg',
+      //   title:'宋城千古情',
+      //   desc:'14711条评论',
+      //   price:'￥245起'
+      // },{
+      //   id:'0003',
+      //   imgUrl:'http://img1.qunarzz.com/sight/p0/201408/14/771e7f0a85ca13b12c3fde0f7739440f.jpg_200x200_5e08c104.jpg',
+      //   title:'杭州乐园',
+      //   desc:'4441条评论',
+      //   price:'￥120起'
+      // },{
+      //   id:'0004',
+      //   imgUrl:'http://img1.qunarzz.com/sight/p0/1603/ae/aecef86d7655873f90.water.jpg_200x200_22a0790e.jpg',
+      //   title:'杭州野生动物园',
+      //   desc:'4794条评论',
+      //   price:'￥170起'
+      // },{
+      //   id:'0005',
+      //   imgUrl:'http://img1.qunarzz.com/sight/p0/201212/18/f195032e85740a4b93835fbb.jpg_200x200_77761d11.jpg',
+      //   title:'杭州海底世界',
+      //   desc:'6464条评论',
+      //   price:'￥115起'
+      // },{
+      //   id:'0006',
+      //   imgUrl:'http://img1.qunarzz.com/sight/p0/1603/e6/e646f4221574cc2a90.water.jpg_200x200_d9b6cabd.jpg',
+      //   title:'双溪竹海漂流',
+      //   desc:'6464条评论',
+      //   price:'￥110起'
+      // },{
+      //   id:'0007',
+      //   imgUrl:'http://img1.qunarzz.com/sight/p0/1603/33/337b483a8f5e76fb90.water.jpg_200x200_8f62ff4e.jpg',
+      //   title:'瑶琳仙境',
+      //   desc:'6464条评论',
+      //   price:'￥109起'
+      // },{
+      //   id:'0008',
+      //   imgUrl:'http://img1.qunarzz.com/sight/p0/1603/18/18ae748f826c5abe90.water.jpg_200x200_67503119.jpg',
+      //   title:'大明山',
+      //   desc:'6464条评论',
+      //   price:'￥91.4起'
+      // }]
     }
   }
 }
