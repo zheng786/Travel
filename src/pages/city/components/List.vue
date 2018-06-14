@@ -53,6 +53,7 @@
     mounted () {
       this.scroll = new BScroll(this.$refs.wrapper)
     },
+    //监听letter改变
     watch:{
       letter(){
         if(this.letter){
