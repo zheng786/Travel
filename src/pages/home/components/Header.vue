@@ -9,6 +9,10 @@
     </div>
     <router-link to="/city">
       <div class="header-right">
+        <!--$store => new Vuex store
+        每个子组件都可以用$store,因为在main.js创建根实例的时候，把store传递进去了。
+        紧接着store就被派发到每个子组件里面。
+        -->
         {{this.city}}
         <span class="iconfont arrow-icon">&#xe600;</span>
       </div>
@@ -17,10 +21,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'HomeHeader',
-  props:{
-    city:String
+  computed:{
+    //mapState:把vuex中的数据映射到这个组件的computed计算属性里
+    ...mapState(['city'])
   }
 }
 </script>
@@ -57,7 +63,8 @@ export default {
       height: .64rem
     .header-right
       color #ffffff
-      width: 1.24rem
+      min-width: 1.04rem
+      padding:0.1rem
       float: right
       text-align center
       .arrow-icon

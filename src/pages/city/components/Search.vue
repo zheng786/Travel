@@ -4,12 +4,17 @@
       <input v-model="keyword" class="search-input" type="text" placeholder="输入城市名或拼音">
     </div>
     <div
-      class="serach-content"
+      class="search-content"
       ref="search"
       v-show="keyword"
     >
       <ul>
-        <li class="search-item border-bottom" v-for="item of list" :key="item.id">
+        <li
+          class="search-item border-bottom"
+          v-for="item of list"
+          :key="item.id"
+          @click="handleCityClick(item.name)"
+        >
           {{item.name}}
         </li>
         <li v-show="noData"  class="search-item border-bottom">
@@ -22,6 +27,7 @@
 
 <script>
   import Bscroll from 'better-scroll'
+  import {mapMutations} from 'vuex'
   export default {
     name:'CitySearch',
     props:{
@@ -35,12 +41,24 @@
         timer:null
       }
     },
+    methods: {
+      handleCityClick(city) {
+        //dispatch:调度 调用Actions
+        //这里没有调用Actions 原因见store/index.js
+        // this.$store.commit('changeCity', city)
+        this.changeCity(city)
+        //改变城市后跳转回首页
+        this.$router.push('/')
+      },
+      ...mapMutations(['changeCity'])
+    },
     computed:{
       noData(){
         return !this.list.length
       }
     },
     watch:{
+      //监听用户的输入内容
       keyword(){
         if(this.timer){
           clearTimeout(this.timer)
@@ -54,7 +72,7 @@
           const result = []
           for (let i in this.cities) {
             this.cities[i].forEach((value) => {
-              if(value.spell.indexOf(this.keyword) > -1 || value.name.indexOf(this.keyword) > -1){
+              if(value.spell.indexOf(this.keyword) == 0 || value.name.indexOf(this.keyword) == 0){
                 result.push(value)
               }
             })
@@ -85,7 +103,7 @@
       border-radius .06rem
       color #666
       padding 0 .1rem
-  .serach-content
+  .search-content
     z-index 1
     overflow hidden
     position absolute

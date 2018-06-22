@@ -6,7 +6,7 @@
         <div class="title border-topbottom">当前城市</div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">杭州</div>
+            <div class="button">{{this.currentCity}}</div>
           </div>
         </div>
       </div>
@@ -14,7 +14,12 @@
       <div class="area">
         <div class="title border-topbottom">热门城市</div>
         <div class="button-list">
-          <div class="button-wrapper" v-for="item of hotCities" :key="item.id">
+          <div
+            class="button-wrapper"
+            v-for="item of hotCities"
+            :key="item.id"
+            @click="handleCityClick(item.name)"
+          >
             <div class="button">{{item.name}}</div>
           </div>
         </div>
@@ -32,6 +37,7 @@
             class="item border-bottom"
             v-for="innerItem of item"
             :key="innerItem.id"
+            @click="handleCityClick(innerItem.name)"
           >
             {{innerItem.name}}
           </div>
@@ -43,26 +49,45 @@
 
 <script>
   import BScroll from 'better-scroll'
+  import { mapState,mapMutations } from 'vuex'
   export default {
-    name:'CityList',
-    props:{
-      hotCities:Array,
-      cities:Object,
-      letter:String
+    name: 'CityList',
+    props: {
+      hotCities: Array,
+      cities: Object,
+      letter: String
     },
-    mounted () {
-      this.scroll = new BScroll(this.$refs.wrapper)
+    computed:{
+    //mapState:把vuex中的数据映射到这个组件的computed计算属性里
+    ...mapState({
+      currentCity:'city'
+    })
+  },
+    methods: {
+      //点击切换到选择的城市
+      handleCityClick(city) {
+        //dispatch:调度 调用Actions
+        //这里没有调用Actions 原因见store/index.js
+        // this.$store.commit('changeCity', city)
+        this.changeCity(city)
+        //改变城市后跳转回首页
+        this.$router.push('/')
+      },
+      ...mapMutations(['changeCity'])
     },
-    //监听letter改变
-    watch:{
-      letter(){
-        if(this.letter){
-          const element = this.$refs[this.letter][0]
-          this.scroll.scrollToElement(element)
+      mounted() {
+        this.scroll = new BScroll(this.$refs.wrapper)
+      },
+      //监听letter改变
+      watch: {
+        letter() {
+          if (this.letter) {
+            const element = this.$refs[this.letter][0]
+            this.scroll.scrollToElement(element)
+          }
         }
       }
     }
-  }
 </script>
 
 <style lang="stylus" type="text/stylus" scoped>

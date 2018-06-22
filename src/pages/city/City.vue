@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!---->
     <city-header></city-header>
     <city-search :cities="cities"></city-search>
     <city-list :cities="cities" :hotCities="hotCities" :letter="letter"></city-list>
@@ -26,12 +27,15 @@ export default {
   },
   data () {
     return{
+      //以前首页头部的城市是由外部传递进去的(是通过Ajax后端返给我们的)。现在使用Vuex,city是由前端存储的，不需要后端告诉我们
+      // city:'',
       cities:{},
       hotCities:[],
       letter:''
     }
   },
   methods:{
+    //获取后台ajax数据
     getCityInfo () {
       axios.get('/api/city.json')
         .then(this.handleGetCityInfoSucc)

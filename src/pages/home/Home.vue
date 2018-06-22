@@ -1,6 +1,6 @@
 <template>
   <div>
-    <home-header :city="city"></home-header>
+    <home-header></home-header>
     <home-swiper :list="swiperList"></home-swiper>
     <home-icons :list="icons"></home-icons>
     <home-recommend :list="recommend"></home-recommend>
@@ -26,7 +26,6 @@ export default {
   },
   data () {
     return {
-      city:'',
       swiperList:[],
       icons:[],
       recommend:[],
@@ -34,6 +33,7 @@ export default {
     }
   },
   methods:{
+    //获取后台ajax数据
     getHomeInfo(){
       axios.get('/api/index.json')
         .then(this.getHomeInfoSucc)
@@ -43,7 +43,6 @@ export default {
       //判断：后端正确的返回了结果而且res里有data 这个内容项
       if(res.ret && res.data){
         const data = res.data
-        this.city = data.city
         this.swiperList = data.swiperList
         this.icons = data.iconList
         this.recommend = data.recommendList

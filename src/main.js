@@ -3,6 +3,7 @@ import App from './App'
 import router from './router'
 import fastClick from 'fastclick'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import store from './store'
 import 'styles/reset.css'
 import 'styles/border.css'
 import 'styles/iconfont.css'
@@ -13,9 +14,11 @@ fastClick.attach(document.body)
 Vue.use(VueAwesomeSwiper)
 
 /* eslint-disable no-new */
+/*创建根VUE实例*/
 new Vue({
   el: '#app',
   router,
+  store,
   // components: { App }  vue1.0的写法
 
   // vue2.0的写法
