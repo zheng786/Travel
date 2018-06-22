@@ -15,6 +15,7 @@ import HomeIcons from './components/Icons'
 import HomeRecommend from './components/Recommend'
 import HomeWeekend from './components/Weekend'
 import axios from 'axios'
+import {mapState} from 'vuex'
 export default {
   name: 'Home',
   components:{
@@ -26,16 +27,20 @@ export default {
   },
   data () {
     return {
+      lastCity:'',
       swiperList:[],
       icons:[],
       recommend:[],
       weekendList:[]
     }
   },
+  computed:{
+    ...mapState(['city'])
+  },
   methods:{
     //获取后台ajax数据
     getHomeInfo(){
-      axios.get('/api/index.json')
+      axios.get('/api/index.json?city='+this.city)
         .then(this.getHomeInfoSucc)
     },
     getHomeInfoSucc(res){
@@ -51,7 +56,16 @@ export default {
     }
   },
   mounted () {
+    this.lastCity = this.city
     this.getHomeInfo()
+  },
+  // 使用keep-alive，生命周期函数会多一个activated函数。
+  //城市重新选择后，页面不重新渲染。当新选择的城市跟之前的城市不一样，重新发数据请求
+  activated(){
+    if(this.lastCity !== this.city){
+      this.lastCity = this.city
+      this.getHomeInfo()
+    }
   }
 }
 </script>
