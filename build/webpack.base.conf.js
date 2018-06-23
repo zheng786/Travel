@@ -36,7 +36,8 @@ module.exports = {
     //alias:别名 化名
     alias: {
       '@': resolve('src'),
-      'styles': resolve('src/assets/styles')
+      'styles': resolve('src/assets/styles'),
+      'common': resolve('src/common'),
     }
   },
   module: {
