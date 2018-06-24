@@ -46,7 +46,13 @@ export default {
         }
     },
     activated () {
+        //因为对window这个全局对象做了一个事件绑定，所有内外部组件都会有影响
         window.addEventListener('scroll',this.handleScroll)
+    },
+    //所以，需要对全局事件解绑
+    //deactivated生命周期函数(keep-alive提供):页面即将被隐藏或者页面即将被替换成新的页面时执行
+    deactivated () {
+        window.removeEventListener('scroll',this.handleScroll)
     }
 }
 </script>
