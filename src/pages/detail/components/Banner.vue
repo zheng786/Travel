@@ -7,7 +7,7 @@
                     杭州烂苹果乐园
                 </div>
                 <div class="banner-num">
-                    <span class="iconfont banner-icon">&#xe632;</span>11
+                    <span class="iconfont banner-icon">&#xe6e5;</span>11
                 </div>
             </div>
         </div>

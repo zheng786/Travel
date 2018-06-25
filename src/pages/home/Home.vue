@@ -61,6 +61,7 @@ export default {
   },
   // 使用keep-alive，生命周期函数会多一个activated函数。
   //城市重新选择后，页面不重新渲染。当新选择的城市跟之前的城市不一样，重新发数据请求
+  //activated:页面重新时执行
   activated(){
     if(this.lastCity !== this.city){
       this.lastCity = this.city
