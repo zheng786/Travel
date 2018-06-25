@@ -24,5 +24,9 @@ export default new Router({
       path: '/detail/:id',
       name:'Detail',
       component:Detail
-    }]
+    }],
+    //每次路由切换的时候，这将简单地使页面滚动到所有路线导航的顶部。
+    scrollBehavior (to, from, savedPosition) {
+      return { x: 0, y: 0 }
+    }
 })

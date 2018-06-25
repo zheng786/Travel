@@ -45,13 +45,17 @@ export default {
             }
         }
     },
-    activated () {
+    /*解释：之前用的是mounted()和destroyed()。但因为在app.vue中<keep-alive exclude="Detail">
+    所以这里使用mounted()和destroyed(),如果离开该页面移除这个监听的事件
+    activated () {*/
+    mounted () {
         //因为对window这个全局对象做了一个事件绑定，所有内外部组件都会有影响
         window.addEventListener('scroll',this.handleScroll)
     },
     //所以，需要对全局事件解绑
     //deactivated生命周期函数(keep-alive提供):页面即将被隐藏或者页面即将被替换成新的页面时执行
-    deactivated () {
+    // deactivated () {
+    destroyed () {
         window.removeEventListener('scroll',this.handleScroll)
     }
 }
@@ -72,7 +76,7 @@ export default {
             color #ffffff
             font-size .36rem
     .header-fixed
-        z-index 9
+        z-index 19
         position fixed
         top 0 
         left 0

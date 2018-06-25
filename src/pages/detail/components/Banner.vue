@@ -1,18 +1,18 @@
 <template>
     <div>
         <div class="banner" @click=handleBannerClick>
-            <img class="banner-img" src="//img1.qunarzz.com/sight/p0/1806/14/14d7e1e39f71410fa3.water.jpg_600x330_46681e5b.jpg" alt="" />
+            <img class="banner-img" :src="bannerImg" alt="" />
             <div class="banner-info">
                 <div class="banner-title">
-                    杭州烂苹果乐园
+                    {{this.sightName}}
                 </div>
                 <div class="banner-num">
-                    <span class="iconfont banner-icon">&#xe6e5;</span>11
+                    <span class="iconfont banner-icon">&#xe6e5;</span>
                 </div>
             </div>
         </div>
         <common-gallery 
-            :imgs='imgs' 
+            :imgs='galleryImgs' 
             v-show="showGallery"
             @close='handleGalleryClose'
         ></common-gallery>
@@ -23,10 +23,14 @@
 import CommonGallery from 'common/gallery/Gallery'
 export default {
     name:'banner',
+    props:{
+        sightName: String,
+        bannerImg: String,
+        galleryImgs: Array 
+    },
     data(){
         return{
             showGallery:false,
-            imgs:['http://img1.qunarzz.com/sight/p0/1806/14/14d7e1e39f71410fa3.water.jpg_r_800x800_87c0c664.jpg','http://img1.qunarzz.com/sight/p0/1806/3e/3ef0017a5092c9f2a3.img.jpg_r_800x800_b4af94a1.jpg','http://img1.qunarzz.com/sight/p0/1704/53/5390149eb3287ef6a3.img.jpg_r_800x800_a8e690bd.jpg']
         }
     },
     components:{
